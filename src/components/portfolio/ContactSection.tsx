@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import emailjs from 'emailjs-com';
 
 const ContactSection: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -24,17 +25,23 @@ const ContactSection: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-
-    // Simulate form submission
+  
     try {
-      // In a real application, you would send this data to your backend
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
+      // Send email via EmailJS
+      const result = await emailjs.send(
+        process.env.REACT_APP_EMAILJS_SERVICE_ID,        // e.g., 'gmail'
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID,       // e.g., 'contact_form'
+        { 
+          email: formData.email,
+          message: formData.message
+        },
+        process.env.REACT_APP_EMAILJS_PUBLIC_KEY,        // Your EmailJS public key
+      );
+  
       toast({
         title: "Message sent successfully!",
         description: "Thank you for reaching out. I'll get back to you soon.",
       });
-      
       setFormData({ email: '', message: '' });
     } catch (error) {
       toast({
@@ -46,6 +53,7 @@ const ContactSection: React.FC = () => {
       setIsSubmitting(false);
     }
   };
+  
 
   return (
     <section id="contact" className="py-20">
