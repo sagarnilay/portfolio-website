@@ -11,14 +11,6 @@ const ProjectsSection: React.FC = () => {
       image: '🛒',
       liveUrl: '#',
       githubUrl: '#'
-    },
-    {
-      title: 'Task Management App',
-      description: 'A collaborative project management tool with real-time updates, team chat, and advanced analytics. Built using modern technologies for optimal performance.',
-      tech: ['Next.js', 'TypeScript', 'MongoDB', 'Socket.io'],
-      image: '📋',
-      liveUrl: '#',
-      githubUrl: '#'
     }
 
   ];
