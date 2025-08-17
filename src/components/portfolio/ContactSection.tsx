@@ -29,13 +29,13 @@ const ContactSection: React.FC = () => {
     try {
       // Send email via EmailJS
       const result = await emailjs.send(
-        process.env.REACT_APP_EMAILJS_SERVICE_ID,        // e.g., 'gmail'
-        process.env.REACT_APP_EMAILJS_TEMPLATE_ID,       // e.g., 'contact_form'
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,   // e.g., 'contact_form'
         { 
           email: formData.email,
           message: formData.message
         },
-        process.env.REACT_APP_EMAILJS_PUBLIC_KEY,        // Your EmailJS public key
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY,        // Your EmailJS public key
       );
   
       toast({
