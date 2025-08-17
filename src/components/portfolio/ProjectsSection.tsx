@@ -6,11 +6,11 @@ const ProjectsSection: React.FC = () => {
   const projects = [
     {
       title: 'AI LMS SaaS',
-      description: 'A full-stack e-commerce solution built with React, Node.js, and PostgreSQL. Features include real-time inventory management, payment processing, and admin dashboard.',
-      tech: ['React', 'Next.js', 'Supabase (PostgreSQL)', 'Clerk'],
-      image: '🛒',
+      description: 'A full-stack AI LMS SaaS app built with Next.js, Supabase (PostgreSQL), and Clerk for authentication and billing. Integrated AI voice assistant (Vapi) within the project to deliver personalized voice lessons to learners.',
+      tech: ['React', 'Next.js', 'Supabase (PostgreSQL)', 'Clerk', 'Sentry'],
+      image: '📚',
       liveUrl: '#',
-      githubUrl: '#'
+      githubUrl: 'https://github.com/sagarnilay/saas-app'
     }
 
   ];
