@@ -27,7 +27,7 @@ const HeroSection: React.FC = () => {
             Full Stack Developer
           </p>
           <p className="text-lg mb-12 text-primary-foreground/80 max-w-2xl mx-auto animate-fade-in delay-200">
-            I am full-stack developer that loves to create beautiful and functional web applications that solve real-world problems. 
+            I am a full-stack developer that loves to create beautiful and functional web applications that solve real-world problems. 
             Passionate about clean code, intuitive design, and cutting-edge technologies.
           </p>
           
