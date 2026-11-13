@@ -1,92 +1,20 @@
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { ArrowUpRight } from 'lucide-react';
 
-const ProjectsSection: React.FC = () => {
-  const projects = [
-    {
-      title: 'AI LMS SaaS',
-      description: 'A full-stack AI LMS SaaS app built with Next.js, Supabase (PostgreSQL), and Clerk for authentication and billing. Integrated AI voice assistant (Vapi) within the project to deliver personalized voice lessons to learners.',
-      tech: ['React', 'Next.js', 'Supabase (PostgreSQL)', 'Clerk', 'Sentry'],
-      image: '📚',
-      liveUrl: '#',
-      githubUrl: 'https://github.com/sagarnilay/saas-app'
-    }
+const projects = [
+  { number: '01', type: 'HYBRID INFRASTRUCTURE LAB', title: 'A hybrid identity & update lab', description: 'A hands-on lab connecting on-premises Active Directory with Microsoft Entra ID. Enrolled devices in Intune for update management and monitoring, and built a domain-joined path with WSUS, Configuration Manager, and Group Policy to explore traditional patching workflows.', tags: ['Active Directory', 'Entra ID', 'Intune', 'WSUS / SCCM', 'Group Policy'] },
+  { number: '02', type: 'CLOUD INFRASTRUCTURE · IN PROGRESS', title: 'Azure landing zone', description: 'A personal learning project for a hub-and-spoke Azure network using Terraform and GitHub Actions with OIDC. The repository also covers governance with Azure Policy and RBAC, plus monitoring through Log Analytics and KQL alerts.', tags: ['Azure', 'Terraform', 'GitHub Actions', 'OIDC', 'Policy & monitoring'], href: 'https://github.com/sagarnilay/azure-landing-zone' },
+  { number: '03', type: 'WEB DEVELOPMENT', title: 'AI LMS SaaS', description: 'A full-stack learning platform built with Next.js, Supabase, and Clerk, including an AI voice assistant for personalized lessons. A separate project from my infrastructure work.', tags: ['Next.js', 'Supabase', 'Clerk', 'Vapi'], href: 'https://github.com/sagarnilay/saas-app' },
+];
 
-  ];
-
-  return (
-    <section id="projects" className="py-20 section-gradient">
-      <div className="container mx-auto px-6">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-gradient">
-            Featured Projects
-          </h2>
-          
-          <div className="grid md:grid-cols-2 gap-8">
-            {projects.map((project, index) => (
-              <Card key={index} className="hover-lift shadow-card overflow-hidden">
-                <CardHeader className="pb-4">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="text-4xl">{project.image}</div>
-                    <CardTitle className="text-xl text-foreground">
-                      {project.title}
-                    </CardTitle>
-                  </div>
-                </CardHeader>
-                
-                <CardContent className="pt-0">
-                  <p className="text-muted-foreground mb-6 leading-relaxed">
-                    {project.description}
-                  </p>
-                  
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {project.tech.map((tech, techIndex) => (
-                      <span 
-                        key={techIndex}
-                        className="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                  
-                  <div className="flex gap-3">
-                    <Button 
-                      size="sm" 
-                      className="hover-glow"
-                      onClick={() => window.open(project.liveUrl, '_blank')}
-                    >
-                      Live Demo
-                    </Button>
-                    <Button 
-                      size="sm" 
-                      variant="outline"
-                      className="hover-lift"
-                      onClick={() => window.open(project.githubUrl, '_blank')}
-                    >
-                      View Code
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-          
-          <div className="text-center mt-12">
-            <Button 
-              size="lg"
-              variant="outline"
-              className="hover-lift"
-              onClick={() => window.open('https://github.com/sagarnilay', '_blank')}
-            >
-              View All Projects on GitHub
-            </Button>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
+const ProjectsSection: React.FC = () => (
+  <section id="projects" className="projects-section section-wrap">
+    <div className="section-heading"><p className="eyebrow">05 / SELECTED WORK</p><h2>Learning by <em>building.</em></h2><p className="section-intro">Labs and projects that connect day-to-day systems knowledge with the infrastructure I’m exploring next.</p></div>
+    <div className="project-list">{projects.map(project => <article className="project-item" key={project.number}>
+      <span className="project-number">{project.number}</span><div className="project-main"><p className="eyebrow">{project.type}</p><h3>{project.title}</h3><p className="project-description">{project.description}</p><div className="project-tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div></div>
+      {project.href && <a className="project-link" href={project.href} target="_blank" rel="noreferrer" aria-label={`View ${project.title} on GitHub`}><ArrowUpRight size={20} /></a>}
+    </article>)}</div>
+    <a className="inline-link" href="https://github.com/sagarnilay" target="_blank" rel="noreferrer">More on GitHub <ArrowUpRight size={15} /></a>
+  </section>
+);
 export default ProjectsSection;

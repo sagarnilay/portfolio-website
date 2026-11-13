@@ -1,46 +1,23 @@
 import React from 'react';
-import { Card, CardContent } from '@/components/ui/card';
+import { ArrowUpRight } from 'lucide-react';
 
-const AboutSection: React.FC = () => {
-  return (
-    <section id="about" className="py-20 section-gradient">
-      <div className="container mx-auto px-6">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-gradient">
-            About Me
-          </h2>
-          
-          <div className="items-center">
-            <div className="space-y-6">
-              <p className="text-lg text-muted-foreground leading-relaxed text-center">
-                Hi, I'm Sagar, a passionate full-stack developer with a Bachelor's degree in Information Technology from the University of Mumbai and a Master's degree in Applied Statistics from Symbiosis University.
-                I specialize in modern web technologies including React, TypeScript, Next.js, Python,
-                and cloud platforms. I believe in writing clean, maintainable code and creating 
-                user experiences that are both beautiful and functional.
-              </p>
-              
-              <p className="text-lg text-muted-foreground leading-relaxed text-center">
-                When I'm not coding, you can find me swimming, surfing, or running.
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-2 gap-4">
-
-             {/* 
-              <Card className="hover-lift shadow-card">
-                <CardContent className="p-6 text-center">
-                  <div className="text-3xl font-bold text-primary mb-2">1+</div>
-                  <div className="text-muted-foreground">Years Experience</div>
-                </CardContent>
-              </Card>
-            */ }
-      
-            </div>
-          </div>
+const AboutSection: React.FC = () => (
+  <section id="experience" className="section-wrap experience-section">
+    <div className="section-heading"><p className="eyebrow">01 / EXPERIENCE</p><h2>Support at the <em>system level.</em></h2></div>
+    <div className="experience-layout">
+      <aside className="role-stamp"><span className="stamp-mark">M</span><p>MICROSOFT</p><span>Technical Support Engineer</span><small>Enterprise support</small></aside>
+      <div className="experience-copy">
+        <p className="lead">I help diagnose and resolve complex Windows client and server issues in enterprise environments, with a focus on restoring service and understanding what went wrong.</p>
+        <div className="work-list">
+          <article><span className="list-number">01</span><div><h3>Windows infrastructure</h3><p>Investigating operating system and server problems, production-impacting incidents, and connectivity failures through structured troubleshooting and network trace analysis.</p></div></article>
+          <article><span className="list-number">02</span><div><h3>Directory services &amp; policy</h3><p>Troubleshooting Active Directory and replication, DNS dependencies, Group Policy processing, and policy application with tools such as GPResult and GPSVC logs.</p></div></article>
+          <article><span className="list-number">03</span><div><h3>Diagnostics &amp; automation</h3><p>Using PowerShell for practical infrastructure tasks, including Hyper-V virtual machine deployment. Capturing crash and memory dumps and analyzing them with a kernel debugger.</p></div></article>
         </div>
+        <p className="small-note">Security hardening and policy baselines are areas I’m actively learning; I distinguish that developing knowledge from my support experience.</p>
       </div>
-    </section>
-  );
-};
-
+    </div>
+    <p className="small-note education-note">Education: Information Technology, University of Mumbai · Applied Statistics, Symbiosis University.</p>
+    <a className="inline-link" href="https://www.linkedin.com/in/sagar-nilay" target="_blank" rel="noreferrer">Connect on LinkedIn <ArrowUpRight size={15} /></a>
+  </section>
+);
 export default AboutSection;
