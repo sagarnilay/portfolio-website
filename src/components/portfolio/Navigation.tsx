@@ -1,107 +1,40 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Menu, X } from 'lucide-react';
 
-interface NavigationProps {
-  activeSection: string;
-}
+interface NavigationProps { activeSection: string }
+const sections = [
+  { id: 'experience', label: 'Experience' }, { id: 'focus', label: 'Focus areas' },
+  { id: 'projects', label: 'Projects' }, { id: 'certifications', label: 'Certifications' },
+];
 
 const Navigation: React.FC<NavigationProps> = ({ activeSection }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-
-  const sections = [
-    { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'contact', label: 'Contact' }, 
-  ];
-
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 24);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsOpen(false); // close mobile menu on click
-    }
-  };
-
+  useEffect(() => {
+    if (!isOpen) return;
+    const closeOnEscape = (event: KeyboardEvent) => { if (event.key === 'Escape') setIsOpen(false); };
+    window.addEventListener('keydown', closeOnEscape);
+    return () => window.removeEventListener('keydown', closeOnEscape);
+  }, [isOpen]);
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-background/80 backdrop-blur-lg shadow-card'
-          : 'bg-transparent'
-      }`}
-    >
-      <div className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <div className="text-xl font-bold text-gradient">Portfolio</div>
-
-          {/* Desktop menu */}
-          <div className="hidden md:flex items-center space-x-6">
-            {sections.map((section) => (
-              <button
-                key={section.id}
-                onClick={() => scrollToSection(section.id)}
-                className={`nav-link ${
-                  activeSection === section.id ? 'active' : ''
-                } text-gray-700`}
-              >
-                {section.label}
-              </button>
-            ))}
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <button
-              className="text-primary"
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </button>
-          </div>
+    <header className={`site-header${isScrolled ? ' is-scrolled' : ''}`}>
+      <nav className="nav-shell" aria-label="Main navigation">
+        <a className="wordmark" href="#home" onClick={() => setIsOpen(false)} aria-label="Sagar Nilay, home">SN<span>.</span></a>
+        <button className="menu-toggle" type="button" aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'} aria-expanded={isOpen} aria-controls="primary-nav" onClick={() => setIsOpen(!isOpen)}>
+          {isOpen ? <X size={22} /> : <Menu size={22} />}
+        </button>
+        <div id="primary-nav" className={`nav-links${isOpen ? ' is-open' : ''}`}>
+          {sections.map(section => <a key={section.id} href={`#${section.id}`} aria-current={activeSection === section.id ? 'location' : undefined} onClick={() => setIsOpen(false)}>{section.label}</a>)}
+          <a className="nav-contact" href="#contact" onClick={() => setIsOpen(false)}>Contact <span aria-hidden="true">↗</span></a>
         </div>
-
-        {/* Mobile dropdown */}
-        {isOpen && (
-          <div className="md:hidden mt-4 bg-white rounded-lg shadow-md p-4 space-y-4">
-            {sections.map((section) => (
-              <button
-                key={section.id}
-                onClick={() => scrollToSection(section.id)}
-                className={`block w-full text-left nav-link ${
-                  activeSection === section.id ? 'active' : ''
-                } text-gray-700`}
-              >
-                {section.label}
-              </button>
-            ))}
-          </div>
-        )}
-      </div>
-    </nav>
+      </nav>
+    </header>
   );
 };
 
