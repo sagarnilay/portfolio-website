@@ -4,7 +4,6 @@ import { ArrowUpRight } from 'lucide-react';
 const projects = [
   { number: '01', type: 'HYBRID INFRASTRUCTURE LAB', title: 'A hybrid identity & update lab', description: 'A hands-on lab connecting on-premises Active Directory with Microsoft Entra ID. Enrolled devices in Intune for update management and monitoring, and built a domain-joined path with WSUS, Configuration Manager, and Group Policy to explore traditional patching workflows.', tags: ['Active Directory', 'Entra ID', 'Intune', 'WSUS / SCCM', 'Group Policy'] },
   { number: '02', type: 'CLOUD INFRASTRUCTURE · IN PROGRESS', title: 'Azure landing zone', description: 'A personal learning project for a hub-and-spoke Azure network using Terraform and GitHub Actions with OIDC. The repository also covers governance with Azure Policy and RBAC, plus monitoring through Log Analytics and KQL alerts.', tags: ['Azure', 'Terraform', 'GitHub Actions', 'OIDC', 'Policy & monitoring'], href: 'https://github.com/sagarnilay/azure-landing-zone' },
-  { number: '03', type: 'WEB DEVELOPMENT', title: 'AI LMS SaaS', description: 'A full-stack learning platform built with Next.js, Supabase, and Clerk, including an AI voice assistant for personalized lessons. A separate project from my infrastructure work.', tags: ['Next.js', 'Supabase', 'Clerk', 'Vapi'], href: 'https://github.com/sagarnilay/saas-app' },
 ];
 
 const ProjectsSection: React.FC = () => (
